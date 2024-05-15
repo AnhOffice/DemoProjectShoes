@@ -1,0 +1,26 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+form label {
+  margin-right: 10px;
+}
+
+form input,
+form select {
+  padding: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}

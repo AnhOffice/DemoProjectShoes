@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style-orderHistory.css" />
+    <title>Order History</title>
+  </head>
+  <body>
+    <h1>Order History</h1>
+
+    <button class="add-order-button" onclick="location.href='add-order.html'">
+      Add Order
+    </button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Order Date</th>
+          <th>Delivery Date</th>
+          <th>Delivery Type</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody id="order-table-body">
+        <!-- Orders will be added here dynamically -->
+      </tbody>
+    </table>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="order-details" id="modal-template" style="display: none">
+      <h4>Order Details</h4>
+      <ul class="details-list">
+        <!-- Order items will be added here dynamically -->
+      </ul>
+      <button class="close-button">Close</button>
+    </div>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>
