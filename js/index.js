@@ -1,6 +1,3 @@
-const overlay = document.getElementById("overlay");
-let orderId = 1;
-
 // Function to load orders from localStorage
 function loadOrders() {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -29,42 +26,29 @@ function addOrderToTable(order) {
   `;
   orderTableBody.appendChild(newRow);
 
-  const modalTemplate = document.getElementById("modal-template");
-  const newModal = modalTemplate.cloneNode(true);
-  newModal.id = `modal-${order.id}`;
-  newModal.style.display = "none";
-
-  const detailsList = newModal.querySelector(".details-list");
-  detailsList.innerHTML = `
-    <li>
-      <img src="./img/shoes.png" alt="shoes" width="10%" /> Nike - Sport -
-      Amount: 5 - Price: $180
-    </li>
+  const detailsRow = document.createElement("tr");
+  detailsRow.classList.add("order-details-row");
+  detailsRow.style.display = "none";
+  detailsRow.innerHTML = `
+    <td colspan="9">
+      <ul class="details-list">
+        <li>
+          <img src="./img/shoes.png" alt="shoes" width="10%" /> Nike - Sport - Amount: 5 - Price: $180
+        </li>
+      </ul>
+    </td>
   `;
-  document.body.appendChild(newModal);
+  orderTableBody.appendChild(detailsRow);
 
   const detailsButton = newRow.querySelector(".order-details-button");
   detailsButton.addEventListener("click", () => {
-    const modal = document.getElementById(
-      `modal-${detailsButton.dataset.orderId}`
-    );
-    modal.style.display = "block";
-    overlay.style.display = "block";
-  });
-
-  const closeButton = newModal.querySelector(".close-button");
-  closeButton.addEventListener("click", () => {
-    newModal.style.display = "none";
-    overlay.style.display = "none";
+    const isVisible = detailsRow.style.display === "table-row";
+    document
+      .querySelectorAll(".order-details-row")
+      .forEach((row) => (row.style.display = "none"));
+    detailsRow.style.display = isVisible ? "none" : "table-row";
   });
 }
-
-overlay.addEventListener("click", () => {
-  document.querySelectorAll(".order-details").forEach((modal) => {
-    modal.style.display = "none";
-  });
-  overlay.style.display = "none";
-});
 
 // Load orders when the page loads
 window.onload = loadOrders;
